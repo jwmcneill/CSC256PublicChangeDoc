@@ -10,7 +10,7 @@ LAST_66_YEAR = 1954
 
 FIRST_67_YEAR = 1960
 
-MONTH_NAMES = {0: 'January',
+MONTH_NAMES = {0: 'january',
                1: 'January',
                2: 'February',
                3: 'March',
@@ -48,7 +48,7 @@ YEAR_LENGTH = 12
 # See https://www.ssa.gov/planners/retire/agereduction.html
 #
 def full_retirement_age(birth_year):
-    if birth_year > CURRENT_YEAR:
+    if birth_year >= CURRENT_YEAR:
         return -1, -1
     if birth_year < EARLIEST_YEAR:
         return -1, -1
@@ -74,8 +74,8 @@ def full_retirement_age(birth_year):
 #
 def full_retirement_date(birth_year, birth_month):
     birth_month_normalized = birth_month
-    if birth_month == 0:
-        birth_month_normalized = 1
+    # if birth_month == 0:
+    #   birth_month_normalized = 1
     age, month_offset = full_retirement_age(birth_year)
     if age == -1 or birth_month_normalized < 0 or birth_month > 12:
         return -1, 'invalid'
